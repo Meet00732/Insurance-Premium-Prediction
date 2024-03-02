@@ -6,6 +6,7 @@ import sys
 from Insurance.exception import InsuranceException
 from Insurance.config import mongo_client
 from Insurance.logger import logging
+import yaml
 
 def get_collection_dataframe(databaseName: str, collectionName: str) -> pd.DataFrame:
     try:
@@ -21,3 +22,24 @@ def get_collection_dataframe(databaseName: str, collectionName: str) -> pd.DataF
     except Exception as e:
         raise InsuranceException(e, sys)
     
+
+def convert_to_float(df:pd.DataFrame, exclude_col:list) -> pd.DataFrame:
+    try:
+        for col in df.columns:
+            if col not in exclude_col:
+                if df[col].dtype != 'O':
+                    df[col] = df[col].astype('float')
+        return df
+    except Exception as e:
+        raise InsuranceException(e, sys)
+    
+
+def write_report_yaml(file_path, data:dict):
+    try:
+        file_dir = os.path.dirname(file_path)
+        os.makedirs(file_dir, exist_ok=True)
+        with open(file_path, "w") as f:
+            yaml.dump(data, f)
+    
+    except Exception as e:
+        raise InsuranceException(e, sys)

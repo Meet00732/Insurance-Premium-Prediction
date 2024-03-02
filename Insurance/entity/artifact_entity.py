@@ -6,3 +6,6 @@ class DataIngestionArtifact:
     train_data_file_path: str
     test_data_file_path: str
 
+@dataclass
+class DataValidationArtifact:
+    validation_report_file: str

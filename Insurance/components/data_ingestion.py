@@ -61,6 +61,10 @@ class DataIngestion:
                 test_data_file_path = self.data_ingestion_config.test_data_file_path
             )
 
+            logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
+
+            return data_ingestion_artifact
+
         except Exception as e:
             raise InsuranceException(e, sys)
         
