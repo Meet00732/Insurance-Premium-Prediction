@@ -3,9 +3,10 @@ import pandas as pd
 import json
 
 client = pymongo.MongoClient("mongodb+srv://Meet:md2002dk@cluster0.6tfsldv.mongodb.net/")
+# print(client.is_mongos)
 
 DATA_PATH = (r"F:/Insurance_Premium_Prediction/Insurance-Premium-Prediction/insurance.csv")
-DATABASE_NAME = "INSURACE"
+DATABASE_NAME = "INSURANCE"
 COLLECTION_NAME = "INSURANCE_COLLECTION"
 
 if __name__ == "__main__":
