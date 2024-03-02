@@ -3,7 +3,8 @@ from Insurance.exception import InsuranceException
 from Insurance.utils import get_collection_dataframe
 from Insurance.entity.config_entity import DataIngestionConfig
 from Insurance.entity import config_entity
-
+from Insurance.components.data_ingestion import DataIngestion
+from Insurance.entity import artifact_entity
 import os
 import sys
 
@@ -27,7 +28,11 @@ if __name__ == "__main__":
         # Defining training pipeline
         training_pipeline_config = config_entity.TrainingPipelineConfig()
         data_ingestion_config = DataIngestionConfig(training_pipeline_config = training_pipeline_config)
-        print(data_ingestion_config.to_dict())
+        # print(data_ingestion_config.to_dict())
+
+        data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
+        data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
+
 
     except Exception as e:
         InsuranceException(e, sys)

@@ -20,12 +20,13 @@ class TrainingPipelineConfig:
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         try:
-            self.database_name = "insurance"
-            self.collection_name = "premium"
+            self.database_name = "INSURANCE"
+            self.collection_name = "INSURANCE_COLLECTION"
             self.data_ingestion_dir = os.path.join(training_pipeline_config.artifacts_dir, "data_ingestion")
             self.feature_store_file_path = os.path.join(self.data_ingestion_dir, "features", FILE_NAME)
             self.train_data_file_path = os.path.join(self.data_ingestion_dir, "dataset", TRAIN_FILE_NAME)
             self.test_data_file_path = os.path.join(self.data_ingestion_dir, "dataset", TEST_FILE_NAME)
+            self.test_size = 0.2
         except Exception as e:
             raise InsuranceException(e, sys)
 
