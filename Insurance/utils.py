@@ -7,6 +7,7 @@ from Insurance.exception import InsuranceException
 from Insurance.config import mongo_client
 from Insurance.logger import logging
 import yaml
+import dill
 
 def get_collection_dataframe(databaseName: str, collectionName: str) -> pd.DataFrame:
     try:
@@ -41,5 +42,33 @@ def write_report_yaml(file_path, data:dict):
         with open(file_path, "w") as f:
             yaml.dump(data, f)
     
+    except Exception as e:
+        raise InsuranceException(e, sys)
+    
+def save_object(file_path:str, obj:object):
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, "wb") as file_obj:
+            return dill.dump(obj, file_obj)
+    except Exception as e:
+        raise InsuranceException(e, sys)
+
+
+def load_object(file_path:str, obj:object):
+    try:
+        if not os.path.exists(file_path):
+            raise Exception(f"File {file_path} does not exist")
+        with open(file_path, "rb") as file_obj:
+            return dill.open(obj, file_obj)
+    except Exception as e:
+        raise InsuranceException(e, sys)
+    
+
+def save_to_numpy(file_path:str, array:np.array):
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, 'wb') as f:
+            np.save(f, array)
     except Exception as e:
         raise InsuranceException(e, sys)

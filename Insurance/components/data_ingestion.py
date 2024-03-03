@@ -6,7 +6,7 @@ from Insurance.entity import config_entity
 from Insurance.entity import artifact_entity
 from Insurance.exception import InsuranceException
 from Insurance.utils import get_collection_dataframe
-import logging
+from Insurance.logger import logging
 from sklearn.model_selection import train_test_split
 
 class DataIngestion:

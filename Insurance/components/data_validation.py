@@ -4,12 +4,12 @@
 # Make sure train, test and insurance.csv are same
 import os
 import sys
-import logging
 from Insurance.exception import InsuranceException
 import pandas as pd
 import numpy as np
 from typing import Optional
 from Insurance.entity import config_entity, artifact_entity
+from Insurance.logger import logging
 from scipy.stats import ks_2samp
 from Insurance.config import TARGET_COLUMN
 from Insurance import utils
