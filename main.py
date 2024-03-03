@@ -1,12 +1,14 @@
 from Insurance.logger import logging
 from Insurance.exception import InsuranceException
 from Insurance.utils import get_collection_dataframe
-from Insurance.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainingConfig
+from Insurance.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from Insurance.entity.config_entity import ModelTrainingConfig, ModelEvalutationConfig
 from Insurance.entity import config_entity
 from Insurance.components.data_ingestion import DataIngestion
 from Insurance.components.data_validation import DataValidation
 from Insurance.components.data_transformation import DataTransformation
 from Insurance.components.model_trainer import ModelTrainer
+from Insurance.components.model_evalutation import ModelEvaluation
 from Insurance.entity import artifact_entity
 import os
 import sys
@@ -59,6 +61,16 @@ if __name__ == "__main__":
                                      transformed_data_artifact=data_transformation_artifact)
         
         model_trainer_artifact = model_trainer.initiate_model_trainer()
+
+
+        # Model Evaluation
+        model_evaluation_config = ModelEvalutationConfig(training_pipeline_config=training_pipeline_config)
+        model_evaluation = ModelEvaluation(model_evaluation_config=model_evaluation_config,
+                                           data_ingestion_artifact=data_ingestion_artifact,
+                                           data_transformation_artifact=data_transformation_artifact,
+                                           model_trainer_artifact=model_trainer_artifact)
+        
+        model_evaluation_artifact = model_evaluation.initaite_model_evaluation()
 
     except Exception as e:
         InsuranceException(e, sys)
