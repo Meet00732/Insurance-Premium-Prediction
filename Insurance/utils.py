@@ -72,3 +72,12 @@ def save_to_numpy(file_path:str, array:np.array):
             np.save(f, array)
     except Exception as e:
         raise InsuranceException(e, sys)
+    
+
+# Load Model
+def load_numpy_data(file_path:str) -> np.array:
+    try:
+        with open(file_path, "rb") as f:
+            return np.load(f)
+    except Exception as e:
+        raise InsuranceException(e, sys)
