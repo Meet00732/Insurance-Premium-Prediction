@@ -1,31 +1,29 @@
-# Insurance Data Processing Pipeline
+# Insurance Premium Prediction
 
 ## Overview
-This project develops a comprehensive data processing pipeline specifically designed for handling insurance data. It integrates multiple stages from data ingestion to model deployment, ensuring a seamless workflow for transforming raw data into actionable insights.
+This project presents a robust and scalable pipeline designed for processing insurance data, covering stages from data ingestion to model deployment. It's crafted to meet industry standards, ensuring modularity, configurability, and automation. This pipeline facilitates tasks such as policy pricing, leveraging machine learning for predictive analytics.
 
 ## Components
-### Data Ingestion: Automates the retrieval of data from various sources.
-Data Validation: Checks data quality and adherence to predefined standards.
-### Data Transformation: Prepares data for analysis by cleaning and structuring.
-### Model Training: Utilizes processed data to train machine learning models.
-### Model Evaluation: Assesses the performance of the models against benchmarks.
-### Model Deployment: Makes the model available for generating predictions.
+- **Data Ingestion**: Importing raw data for processing.
+- **Data Validation**: Ensuring data quality and consistency.
+- **Data Transformation**: Preparing data for modeling.
+- **Model Training**: Building predictive models.
+- **Model Evaluation**: Assessing model performance.
+- **Model Deployment**: Deploying models for predictions.
 
-## Technologies
-Python: Core programming language
-Streamlit: For creating the web application interface
-Pandas, NumPy: Data manipulation and numerical analysis
-Scikit-Learn: Machine learning algorithms
+## Getting Started
+### Prerequisites
+- Python 3.8+
+- Required Python libraries: pandas, scikit-learn, streamlit (Refer to `requirements.txt` for details).
 
-## Setup
-Clone the repository to your local machine.
-Install required dependencies: pip install -r requirements.txt
-Run the Streamlit application: streamlit run app.py
+### Installation
+1. Clone the repository: `git clone <repository-url>`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Launch the application with: `streamlit run app.py`
 
-## Usage
-Configure the config.yaml file according to your data and model preferences.
-Execute the main.py script to run the entire pipeline.
-Access the Streamlit web application for interactive data exploration and predictions.
+### Running the Pipeline
+To run the pipeline, execute the following command: `python main.py`
+This command orchestrates the entire process, from data ingestion to model evaluation.
 
-## Contribution
-Feel free to fork the project, make changes, and submit pull requests. We appreciate contributions that improve the functionality or documentation.
+### Launch Application
+- After executing command `python main.py`, to create the application using streamlit run: `streamlit run app.py`
