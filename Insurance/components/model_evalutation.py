@@ -87,7 +87,7 @@ class ModelEvaluation:
 
             # Comaring both model
             logging.info(f"Comparing r2 score for both models")
-            if curr_model_score <= prev_model_score:
+            if curr_model_score < prev_model_score:
                 logging.info(f"Current Trained Model is not better than previous one")
                 raise Exception(f"Current Trained Model is not better than previous one")
             

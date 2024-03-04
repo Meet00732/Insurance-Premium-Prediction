@@ -70,6 +70,7 @@ class ModelTrainer:
                                 Overfitting Threshold: {self.model_trainer_config.overfitting_threshold} \
                                 Model score difference: {diff}")
             
+            logging.info(f"R2 score of current model on test data: {r2_score_test}")
             utils.save_object(self.model_trainer_config.model_path, obj=model)
 
             model_trainer_artifact = artifact_entity.ModelTrainingArtifact(model_path=self.model_trainer_config.model_path,
