@@ -7,7 +7,7 @@ from Insurance.exception import InsuranceException
 from Insurance.entity.config_entity import MODEL_FILE_NAME, TARGET_ENCODER_OBJECT_FILE_NAME, TRANSFORMER_OBJECT_FILE_NAME
 
 
-class SavedModels:
+class ModelRegistry:
     def __init__(self, model_registry:str = "saved_models",
                  transformer_dir_name:str = "transformer",
                  target_encoder_dir_name: str = "target_encoder",
@@ -36,7 +36,7 @@ class SavedModels:
     def get_latest_model_path(self):
         try:
             latest_dir_path = self.get_latest_dir_path()
-            if len(latest_dir_path) == 0:
+            if latest_dir_path == None:
                 raise Exception(f"Model is not available!")
             return os.path.join(latest_dir_path, self.model_dir, MODEL_FILE_NAME)
         
@@ -47,7 +47,7 @@ class SavedModels:
     def get_latest_transformer_path(self):
         try:
             latest_dir_path = self.get_latest_dir_path()
-            if len(latest_dir_path) == 0:
+            if latest_dir_path == None:
                 raise Exception(f"Transform data path not found!")
             return os.path.join(latest_dir_path, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
         
@@ -58,7 +58,7 @@ class SavedModels:
     def get_latest_target_encoder_path(self):
         try:
             latest_dir_path = self.get_latest_dir_path()
-            if len(latest_dir_path) == 0:
+            if latest_dir_path == None:
                 raise Exception(f"Target Encoder data path not found!")
             return os.path.join(latest_dir_path, self.target_encoder_dir_name, TARGET_ENCODER_OBJECT_FILE_NAME)
         
@@ -69,7 +69,7 @@ class SavedModels:
     def get_latest_save_dir_path(self)->str:
         try: 
             latest_dir_path = self.get_latest_dir_path()
-            if len(latest_dir_path) == 0:
+            if latest_dir_path == None:
                 return os.path.join(self.model_registry, f"{0}")
 
             latest_dir_number = int(os.path.basename(self.get_latest_dir_path()))
@@ -87,7 +87,7 @@ class SavedModels:
             raise e
         
     # Saving Transformed Data
-    def get_latest_saved_trasnformed_path(self):
+    def get_latest_saved_transformed_path(self):
         try:
             latest_dir_path = self.get_latest_save_dir_path()
             return os.path.join(latest_dir_path, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)

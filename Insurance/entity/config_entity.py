@@ -19,7 +19,7 @@ class TrainingPipelineConfig:
         except Exception as e:
             raise InsuranceException(e, sys)
 
-
+# Data Ingestion
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         try:
@@ -39,7 +39,7 @@ class DataIngestionConfig:
         except Exception as e:
             InsuranceException(e, sys)
 
-
+# Data Validation
 class DataValidationConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         try:
@@ -50,7 +50,7 @@ class DataValidationConfig:
         except Exception as e:
             raise InsuranceException(e, sys)
         
-
+# Data Transformation
 class DataTransformationConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         try:
@@ -63,7 +63,7 @@ class DataTransformationConfig:
         except Exception as e:
             raise InsuranceException(e, sys)
         
-
+# Model Trainer
 class ModelTrainingConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         try:
@@ -75,6 +75,19 @@ class ModelTrainingConfig:
         except Exception as e:
             raise InsuranceException(e, sys)
         
+# Model Evaluation
 class ModelEvalutationConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         self.change_threshold = 0.01
+
+
+# Model Pusher
+class ModelPusherConfig:
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        # Creating a folder to save new model
+        self.model_pusher_dir = os.path.join(training_pipeline_config.artifacts_dir, "model_pusher")
+        self.saved_model_dir = os.path.join("saved_models")
+        self.pusher_model_dir = os.path.join(self.model_pusher_dir, "saved_models")
+        self.pusher_model_path = os.path.join(self.pusher_model_dir, MODEL_FILE_NAME)
+        self.pusher_transformer_path = os.path.join(self.pusher_model_dir, TRANSFORMER_OBJECT_FILE_NAME)
+        self.pusher_target_encoder_path = os.path.join(self.pusher_model_dir, TARGET_ENCODER_OBJECT_FILE_NAME)

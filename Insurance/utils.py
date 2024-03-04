@@ -54,12 +54,12 @@ def save_object(file_path:str, obj:object):
         raise InsuranceException(e, sys)
 
 
-def load_object(file_path:str, obj:object):
+def load_object(file_path:str):
     try:
         if not os.path.exists(file_path):
             raise Exception(f"File {file_path} does not exist")
         with open(file_path, "rb") as file_obj:
-            return dill.open(obj, file_obj)
+            return dill.load(file_obj)
     except Exception as e:
         raise InsuranceException(e, sys)
     
